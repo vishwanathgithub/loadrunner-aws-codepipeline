@@ -1,0 +1,15 @@
+---
+version: 0.2
+env:
+  secrets-manager:
+    MF_PASSWORD: "hvcp.loadrunner.login:auth"
+phases:
+  install:
+    runtime-versions:
+      python: 3.8
+  pre_build:
+    commands:
+      - pip install -r test/requirements.txt --upgrade
+  build:
+    commands:
+      - python src/run_test.py $NFT_USERNAME $MF_PASSWORD $DOMAIN_NAME $PROJECT_NAME $TEST_ID $TEST_INSTANCE_ID $LOG_LEVEL
